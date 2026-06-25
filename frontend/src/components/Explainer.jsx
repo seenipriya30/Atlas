@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, Award, CheckCircle, Sparkles, HelpCircle, Layers, AlertCircle } from 'lucide-react';
 import Loader from './Loader';
+import { API_URL } from '../config';
 
 export default function Explainer({ addHistory, triggerQuizCreation, triggerFlashcardCreation }) {
   const [topic, setTopic] = useState('');
@@ -25,7 +26,7 @@ export default function Explainer({ addHistory, triggerQuizCreation, triggerFlas
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/explain', {
+      const response = await fetch(`${API_URL}/api/explain`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, level }),

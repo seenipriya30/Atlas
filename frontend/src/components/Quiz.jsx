@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HelpCircle, AlertCircle, Sparkles, Check, X, RefreshCw, Clock } from 'lucide-react';
 import Loader from './Loader';
+import { API_URL } from '../config';
 
 export default function Quiz({ 
   prefilledTopic, 
@@ -81,7 +82,7 @@ export default function Quiz({
     setQuizComplete(false);
 
     try {
-      const response = await fetch('http://localhost:5000/api/generate-quiz', {
+      const response = await fetch(`${API_URL}/api/generate-quiz`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

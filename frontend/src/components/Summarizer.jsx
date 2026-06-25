@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, AlertCircle, Sparkles, Check, HelpCircle, Layers, List } from 'lucide-react';
 import Loader from './Loader';
+import { API_URL } from '../config';
 
 export default function Summarizer({ addHistory, triggerQuizCreation, triggerFlashcardCreation }) {
   const [notes, setNotes] = useState('');
@@ -21,7 +22,7 @@ export default function Summarizer({ addHistory, triggerQuizCreation, triggerFla
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/summarize', {
+      const response = await fetch(`${API_URL}/api/summarize`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ notes, length, includeGlossary }),

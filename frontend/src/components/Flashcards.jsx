@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Layers, AlertCircle, Sparkles, RefreshCw, CheckCircle, ArrowRight, ArrowLeft, HelpCircle } from 'lucide-react';
 import Loader from './Loader';
+import { API_URL } from '../config';
 
 export default function Flashcards({ 
   prefilledTopic, 
@@ -48,7 +49,7 @@ export default function Flashcards({
     setStudyComplete(false);
 
     try {
-      const response = await fetch('http://localhost:5000/api/generate-flashcards', {
+      const response = await fetch(`${API_URL}/api/generate-flashcards`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, GraduationCap, User, Sparkles, AlertCircle, Volume2, HelpCircle } from 'lucide-react';
 import Loader from './Loader';
+import { API_URL } from '../config';
 
 // Audio Synthesizer for premium sound feedback
 const playChatSound = (type) => {
@@ -75,7 +76,7 @@ export default function Chat({ addHistory }) {
     addHistory('chat', text.substring(0, 30) + (text.length > 30 ? '...' : ''));
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
